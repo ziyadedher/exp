@@ -28,9 +28,6 @@ class CustomEnv(gym.Env):
         self.observation_space = self.env.observation_space
 
     def reset(self):
-        print(self._action_map(0))
-        print(self._reward)
-
         self.configure()
         self._reward = 0
         return self._modify(self.env.reset())
@@ -53,10 +50,10 @@ class CustomEnv(gym.Env):
         return vals
 
     def configure(self):
+        self._action_map = eval(self.config("action_map"))
         self._configure()
         if self.config("time_limit"):
             self.env = wrappers.TimeLimit(self.env.unwrapped, self.config("time_limit"))
-        self._action_map = eval(self.config("action_map"))
 
 
     def _modify(self, data):
@@ -150,7 +147,7 @@ class LunarLanderContinuous(CustomEnv):
         self.env.particles = []
         self.env.prev_reward = None
 
-        self.reset()
+        self.env.reset()
 
     def _step(self, action):
         return self.env.step(action)

@@ -12,7 +12,7 @@ ray.init()
 tune.run(
     "PPO",
 
-    name="CartPole_conf_both",
+    name="CartPole_learn_conf",
 
     stop={
         "episode_reward_mean": 495,
@@ -27,7 +27,7 @@ tune.run(
         "env": CartPole,
         "env_config": {
             "time_limit": 500,
-            "with_confounder": True,
+            # "with_confounder": True,
             "action_map": ['lambda x: x', 'lambda x: int(not x)'],
         },
         "gamma": 0.99,
@@ -60,7 +60,7 @@ tune.run(
             "dim": 84,
 
             "custom_preprocessor": None,
-            "custom_model": "ConfounderLatent",
+            "custom_model": "LearnConf",
             "custom_action_dist": None,
             "custom_options": {},
         },

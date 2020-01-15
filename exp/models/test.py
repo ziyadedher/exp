@@ -42,12 +42,10 @@ class TensorflowTestModel(TFModelV2):
         inputs = tf.keras.layers.Input(shape=(np.product(self.obs_space.shape), ))
 
         hidden = tf.keras.layers.Dense(128, activation=tf.keras.activations.tanh, kernel_initializer=tf.keras.initializers.RandomNormal(stddev=1.0))(inputs)
-        hidden = tf.keras.layers.Dense(256, activation=tf.keras.activations.tanh, kernel_initializer=tf.keras.initializers.RandomNormal(stddev=1.0))(hidden)
         hidden = tf.keras.layers.Dense(32, kernel_initializer=tf.keras.initializers.RandomNormal(stddev=1.0))(hidden)
         logits = tf.keras.layers.Dense(self.num_outputs, kernel_initializer=tf.keras.initializers.RandomNormal(stddev=0.01))(hidden)
 
         hidden = tf.keras.layers.Dense(128, activation=tf.keras.activations.tanh, kernel_initializer=tf.keras.initializers.RandomNormal(stddev=1.0))(inputs)
-        hidden = tf.keras.layers.Dense(256, activation=tf.keras.activations.tanh, kernel_initializer=tf.keras.initializers.RandomNormal(stddev=1.0))(hidden)
         hidden = tf.keras.layers.Dense(32, kernel_initializer=tf.keras.initializers.RandomNormal(stddev=1.0))(hidden)
         value = tf.keras.layers.Dense(1, kernel_initializer=tf.keras.initializers.RandomNormal(stddev=0.01))(hidden)
 
